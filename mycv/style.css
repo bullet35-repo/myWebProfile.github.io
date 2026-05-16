@@ -1,0 +1,313 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #323946;
+    min-height: 100vh;
+}
+.container{
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 1000px;
+    background-color: white;
+    display: grid;
+    margin: 50px;
+    grid-template-columns: 1fr 2fr;
+    box-shadow: 0 35px 55px rgba(0, 0, 0, .1);
+}
+.container .leftside{
+    position:relative; 
+    background: #003147;
+    padding: 40px;
+    
+}
+.profile{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+.profile .imgbox{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile .imgbox img{
+    position: absolute ;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: initial;
+}
+.profile h2{
+    color: white;
+    font-size: 1.6em;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+.profile h2 span{
+    font-size: 0.7em;
+    font-weight: 300;
+}
+.contact{
+    padding-top: 40px;
+}
+.title{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.contact ul{
+    position: relative;
+}
+.contact ul li{
+    display: flex;
+    position: relative;
+    list-style: none;
+    margin: 13px 0;
+    gap: 5px;
+    cursor: pointer;
+}
+.contact ul li .icon {
+    display: inline-block;
+    font-size: 18px;
+    color: #03a9f4;
+    width: 30px; 
+}
+.contact ul li span{
+    color: white;
+    font-weight: 300;
+}
+.Education{
+    padding-top: 25px;
+}
+.Education .title{
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.Education ul{
+    position: relative;
+    padding-bottom: 10px;
+    list-style: circle;
+    padding-left: 17px;
+    
+}
+.Education ul li{
+    display: list-item;
+    align-items: center;
+    margin: 5px;
+    color: white;
+}
+.Education h5{
+    color: aqua;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.language{
+    padding-top: 20px;
+    
+}
+.header{
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+}
+.languages{
+    position: relative;
+    color: white;
+    list-style: none;
+    padding-top: 10px;
+}
+.languages li {
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+.lang-name{
+    font-weight: 300;
+    font-size: 15px;
+}
+.lang-bar {
+    display: inline-block;
+    width: 210px;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    position: relative;
+    margin-left: 10px;
+}
+.lang-bar::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    border-radius: 5px;
+    background: #4CAF50;
+}
+.full::before { width: 100%;} 
+.four::before { width: 50%; } 
+
+.interests{
+    position: relative;
+    padding-top: 30px;
+}
+.interests h3{
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: white;
+    padding-bottom: 15px;
+}
+.interests ul li{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    list-style: none;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding-left: 5px;
+    color: aqua;
+    font-size: 17px;
+}
+.interests ul li img{
+    
+    width: 30px;
+    height: 30px;
+}
+.container .rightside{
+    position:relative; 
+    background: white;
+    padding: 40px;
+    margin: 15px;
+}
+.about{
+   margin-bottom: 10px;
+}
+.about .title{
+    padding-top: 20px;
+    position: relative;
+    color: black;
+    font-weight: 600;
+}
+.about p{
+    font-weight: 300;
+    font-size: 17px;
+   text-align: justify;
+   text-indent: 2em;
+   line-height: 1.5em;
+   padding-bottom: 15px;
+   
+}
+
+.skills .title{
+    color: black;
+}
+.skills ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.skills ul li{
+    display: flex;
+    margin-bottom:  15px;
+    align-items: center;
+    gap: 10px;
+}
+.skills img{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+.Projects{
+    padding-bottom: 5px;
+}
+.Projects h3{
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.Projects ul{
+    list-style: none;
+    padding-left: 20px;
+}
+.Projects ul li{
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+.experience{
+    padding-bottom: 10px;
+}
+.experience h3{
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.experience p{
+    font-size: 17px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+.reference h3{
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.reference ul{
+    list-style: none;
+    padding-left: 20px;
+}
+.reference ul li{
+    margin-bottom: 15px ;
+    font-size: 17px;
+}
+
+@media print {
+    body {
+        print-color-adjust: exact;        
+        -webkit-print-color-adjust: exact; 
+        margin: 0; 
+        padding: 0;
+    }
+
+    .cv-container { 
+        page-break-inside: avoid;
+        font-size: 12px;
+        width: 100%; 
+        height: 100vh;  
+    }
+
+    h1, h2, h3, p {
+        page-break-after: avoid; 
+    }
+}
+
+
+
