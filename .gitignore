@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor folders
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Local environment files
+.env
+.env.*
+
+# Dependencies if the project uses npm later
+node_modules/
+
+# Temporary/local files
+tmp/
+temp/
+
+# PHP/local upload folders if added later
+uploads/
