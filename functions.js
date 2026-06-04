@@ -152,19 +152,19 @@ initTypewriter();
 function openAccordion() {
     const accordionItems = document.querySelectorAll(".accordion-item");
     const expertiseCard = document.querySelector(".expertise");
+    const BASE_SPAN = 13;
+    const ROW_SIZE = 10;
+    const GAP_SIZE = 24;
 
-    const BASE_SPAN = 13;  // Must match your CSS grid-row: span 13
-    const ROW_SIZE = 10;   // grid-auto-rows: 10px
-    const GAP_SIZE = 24;   // gap: 1.5rem = 24px
-
-    // Converts pixel height to grid row spans (accounts for gaps between rows)
     function pxToSpan(px) {
-        return Math.ceil((px + GAP_SIZE) / (ROW_SIZE + GAP_SIZE));
+        return Math.ceil(px / (ROW_SIZE + GAP_SIZE));
     }
 
     accordionItems.forEach(item => {
         const btn = item.querySelector(".accordion-button");
         const body = item.querySelector(".accordion-body");
+
+        btn.setAttribute("aria-expanded", "false");
 
         btn.addEventListener("click", () => {
             const isOpen = item.classList.contains("open");
@@ -172,20 +172,17 @@ function openAccordion() {
             // Close all items first
             accordionItems.forEach(otherItem => {
                 otherItem.classList.remove("open");
-                otherItem.querySelector(".accordion-body").style.maxHeight = null;
+                otherItem.querySelector(".accordion-button").setAttribute("aria-expanded", "false");
+                otherItem.querySelector(".accordion-body").style.maxHeight = "0";
             });
+            expertiseCard.style.gridRow = `span ${BASE_SPAN}`;
 
             if (!isOpen) {
                 // Open this item
                 item.classList.add("open");
+                btn.setAttribute("aria-expanded", "true");
                 body.style.maxHeight = body.scrollHeight + "px";
-
-                // Grow the card by exactly the body height
-                const extraSpan = pxToSpan(body.scrollHeight);
-                expertiseCard.style.gridRow = `span ${BASE_SPAN + extraSpan}`;
-            } else {
-                // Restore to base size
-                expertiseCard.style.gridRow = `span ${BASE_SPAN}`;
+                expertiseCard.style.gridRow = `span ${BASE_SPAN + pxToSpan(body.scrollHeight)}`;
             }
         });
     });

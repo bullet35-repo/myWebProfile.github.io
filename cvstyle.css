@@ -551,8 +551,14 @@ main section.active {
 .accordion-body {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.35s ease;
-    padding: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.accordion-item.open .accordion-body {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .accordion-item.open .acc-arrow {
@@ -562,7 +568,7 @@ main section.active {
 .accordion-body p {
     font-size: 0.88rem;
     color: var(--text-muted);
-    padding-bottom: 1rem;
+    padding-bottom: 0.7rem;
     line-height: 1.6;
 }
 
