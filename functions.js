@@ -188,3 +188,23 @@ function openAccordion() {
     });
 }
 openAccordion();
+
+function initThemeToggle() {
+    const toggleThemeBtn = document.querySelector(".theme-toggle-button");
+    if (!toggleThemeBtn) return;
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        toggleThemeBtn.classList.add("active");
+    }
+
+    toggleThemeBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark-theme");
+
+        toggleThemeBtn.classList.toggle("active", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+}
+initThemeToggle();

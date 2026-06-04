@@ -6,7 +6,27 @@
     --accent-blue: #3b82f6;
     --border-color: #e5e7eb;
     --hover-color: #0d2244;
+    --theme-hover-bg: #d1e3ee;
+    --toggle-bg: #cbd5e1;
+    --toggle-knob: #ffffff;
+    --dark-card-bg: #2D3748;
+    --dark-card-text: #ffffff;
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body.dark-theme {
+    --bg-color: #111827;
+    --card-bg: #1f2937;
+    --text-main: #f9fafb;
+    --text-muted: #cbd5e1;
+    --border-color: #374151;
+    --hover-color: #3b82f6;
+    --theme-hover-bg: #374151;
+    --toggle-bg: #4b5563;
+    --toggle-knob: #f9fafb;
+    --dark-card-bg: #111827;
+    --dark-card-text: #f9fafb;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -28,6 +48,7 @@ body {
     color: var(--text-main);
     padding: 1.5rem;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -168,14 +189,14 @@ li {
 
 
 .theme-toggle-button:hover {
-    background-color: #d1e3ee;
+    background-color: var(--theme-hover-bg);
     /* Slightly darker than bg-color on hover */
 }
 
 .toggle-switch {
     width: 44px;
     height: 24px;
-    background-color: #cbd5e1;
+    background-color: var(--toggle-bg);
     border-radius: 20px;
     position: relative;
     transition: all 0.3s ease;
@@ -186,7 +207,7 @@ li {
     position: absolute;
     width: 18px;
     height: 18px;
-    background-color: white;
+    background-color: var(--toggle-knob);
     border-radius: 50%;
     top: 3px;
     left: 3px;
@@ -195,7 +216,7 @@ li {
 }
 
 .theme-toggle-button:hover {
-    background-color: #d1e3ee;
+    background-color: var(--theme-hover-bg);
 }
 
 .theme-toggle-button.active .toggle-switch {
@@ -256,11 +277,10 @@ main section.active {
 .hero-card {
     grid-column: span 4;
     grid-row: span 9;
-    background-color: #2D3748;
-    color: white;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-card-text);
     background-size: cover;
     background-position: center;
-    background-color: #2D3748;
     transition: background-image 1s ease-in-out;
     position: relative;
     overflow: hidden;
@@ -516,6 +536,7 @@ main section.active {
     background: none;
     border: none;
     cursor: pointer;
+    color: inherit;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -575,15 +596,15 @@ main section.active {
 .featured-projects {
     grid-column: span 4;
     grid-row: span 13;
-    background-color: #2D3748;
-    color: white;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-card-text);
 }
 
 .contact-info {
     grid-column: span 2;
     grid-row: span 7;
-    background-color: #2D3748;
-    color: white;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-card-text);
 }
 
 .about-content {
