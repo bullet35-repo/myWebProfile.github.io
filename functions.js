@@ -1,3 +1,6 @@
+/* ==================================================
+   Section navigation
+   ================================================== */
 function navSections() {
     const navLinks = document.querySelectorAll(".sidebar-menu a");
     const sections = document.querySelectorAll("main section");
@@ -34,38 +37,26 @@ function navSections() {
         showSection(id);
     });
 }
-navSections();
+
+/* ==================================================
+   Current date
+   ================================================== */
 function updateDate() {
     const dateElement = document.getElementById('current-date');
     if (!dateElement) return;
     const now = new Date();
-
-    // We can configure exactly how we want the date to look!
-    const options = {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-
-    // Formats it like "Wed, February 25, 2026"
-    const formattedDate = now.toLocaleDateString('en-US', options);
-
-    // Small tweak to match your reference image format exactly: "Wed, 2026 February 25"
-    // (Optional: If you prefer the standard format above, just use formattedDate instead)
     const dayName = now.toLocaleDateString('en-US', { weekday: 'short' });
     const year = now.getFullYear();
     const monthName = now.toLocaleDateString('en-US', { month: 'long' });
     const dayNum = now.getDate();
-
     const customFormat = `${dayName}, ${year} ${monthName} ${dayNum}`;
 
-    // Update the text in the HTML
     dateElement.textContent = customFormat;
 }
-// Run it immediately when the script loads
-updateDate();
 
+/* ==================================================
+   Hero background slider
+   ================================================== */
 function initHeroSlider() {
     const heroCard = document.getElementById('hero-bg-card');
     if (!heroCard) return;
@@ -90,9 +81,10 @@ function initHeroSlider() {
     // Call the changeBackground function every 5000 milliseconds (5 seconds)
     setInterval(changeBackground, 5000);
 }
-// Run the slider initialization
-initHeroSlider();
 
+/* ==================================================
+   Hero typewriter
+   ================================================== */
 function initTypewriter() {
     const hour = new Date().getHours();
     let greeting = "";
@@ -111,6 +103,7 @@ function initTypewriter() {
     ];
 
     const el = document.getElementById("typewriter");
+    if (!el) return;
 
     let textIndex = 0;
     let charIndex = 0;
@@ -148,7 +141,10 @@ function initTypewriter() {
     // Start after DOM loads (safe)
     document.addEventListener("DOMContentLoaded", type);
 }
-initTypewriter();
+
+/* ==================================================
+   Expertise accordion
+   ================================================== */
 function openAccordion() {
     const accordionItems = document.querySelectorAll(".accordion-item");
     const expertiseCard = document.querySelector(".expertise");
@@ -187,8 +183,10 @@ function openAccordion() {
         });
     });
 }
-openAccordion();
 
+/* ==================================================
+   Light and dark theme
+   ================================================== */
 function initThemeToggle() {
     const toggleThemeBtn = document.querySelector(".theme-toggle-button");
     if (!toggleThemeBtn) return;
@@ -207,7 +205,10 @@ function initThemeToggle() {
         localStorage.setItem("theme", isDark ? "dark" : "light");
     });
 }
-initThemeToggle();
+
+/* ==================================================
+   Project cards and JSON data
+   ================================================== */
 function createProjectCard(project, compact = false) {
     return `
         <article class="project-card ${compact ? "project-card-compact" : ""}">
@@ -249,28 +250,6 @@ const loadProjects = async () => {
 
         const data = await response.json();
 
-        // Create reusable HTML for one project.
-        const createProjectCard = (project, compact = false) => `
-            <article class="project-card ${compact ? "project-card-compact" : ""}">
-                <img
-                    src="${project.image}"
-                    alt="${project.title}"
-                    loading="lazy"
-                >
-
-                <div class="project-card-content">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-
-                    <div class="project-technologies">
-                        ${project.technologies.map(technology =>
-                            `<span>${technology}</span>`
-                        ).join("")}
-                    </div>
-                </div>
-            </article>
-        `;
-
         // All projects on the Projects page.
         if (projectList) {
             projectList.innerHTML = data.projects
@@ -300,11 +279,25 @@ const loadProjects = async () => {
     }
 };
 
-loadProjects();
-const viewAllButton = document.querySelector(".view-all-projects");
+function initViewAllProjects() {
+    const viewAllButton = document.querySelector(".view-all-projects");
+    if (!viewAllButton) return;
 
-viewAllButton?.addEventListener("click", () => {
-    document.querySelector(
-        '.sidebar-menu a[href="#projects"]'
-    )?.click();
-});
+    viewAllButton.addEventListener("click", () => {
+        document.querySelector(
+            '.sidebar-menu a[href="#projects"]'
+        )?.click();
+    });
+}
+
+/* ==================================================
+   Initialization
+   ================================================== */
+navSections();
+updateDate();
+initHeroSlider();
+initTypewriter();
+openAccordion();
+initThemeToggle();
+loadProjects();
+initViewAllProjects();
