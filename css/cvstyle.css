@@ -1,3 +1,6 @@
+/* ==================================================
+   Theme variables
+   ================================================== */
 :root {
     --bg-color: #E2F1f8;
     --card-bg: #FFFFFF;
@@ -29,6 +32,9 @@ body.dark-theme {
     --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
+/* ==================================================
+   Reset and global elements
+   ================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -60,6 +66,9 @@ li {
     list-style: none;
 }
 
+/* ==================================================
+   Main page layout
+   ================================================== */
 .main-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -69,6 +78,9 @@ li {
     height: 100%;
 }
 
+/* ==================================================
+   Sidebar, profile, navigation, and theme toggle
+   ================================================== */
 .sidebar {
     background-color: var(--card-bg);
     border-radius: 1.5rem;
@@ -234,6 +246,9 @@ li {
     margin-top: 1rem;
 }
 
+/* ==================================================
+   Main content and section navigation
+   ================================================== */
 main {
     flex-grow: 1;
     width: 100%;
@@ -256,6 +271,9 @@ main section.active {
     display: block;
 }
 
+/* ==================================================
+   Home: shared bento-grid cards
+   ================================================== */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -274,6 +292,9 @@ main section.active {
     justify-content: space-between;
 }
 
+/* ==================================================
+   Home: hero
+   ================================================== */
 .hero-card {
     grid-column: span 4;
     grid-row: span 9;
@@ -327,6 +348,9 @@ main section.active {
     }
 }
 
+/* ==================================================
+   Home: skill set marquee
+   ================================================== */
 .skill-set {
     grid-column: span 2;
     grid-row: span 7;
@@ -410,6 +434,9 @@ main section.active {
     }
 }
 
+/* ==================================================
+   Shared card headings
+   ================================================== */
 .card-title {
     display: flex;
     justify-content: flex-start;
@@ -423,6 +450,9 @@ main section.active {
     font-size: 1.5rem;
 }
 
+/* ==================================================
+   Home: career statistics
+   ================================================== */
 .bento-grid>.career-stats {
     grid-column: span 4;
     grid-row: span 9;
@@ -512,6 +542,9 @@ main section.active {
     font-weight: 600;
 }
 
+/* ==================================================
+   Home: expertise accordion
+   ================================================== */
 .bento-grid>.expertise {
     grid-column: span 2;
     grid-row: span 13;
@@ -593,6 +626,9 @@ main section.active {
     line-height: 1.6;
 }
 
+/* ==================================================
+   Home: featured projects and contact card
+   ================================================== */
 .featured-projects {
     grid-column: span 4;
     grid-row: span 13;
@@ -656,6 +692,9 @@ main section.active {
     color: var(--text-main);
 }
 
+/* ==================================================
+   About section
+   ================================================== */
 .about-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -663,6 +702,9 @@ main section.active {
     gap: 1.5rem;
     grid-auto-flow: dense;
 }
+/* ==================================================
+   Projects section
+   ================================================== */
 .projects-content {
     display: flex;
     flex-direction: column;
@@ -776,6 +818,7 @@ main section.active {
     color: var(--text-main);
 }
 
+/* Projects: dark-mode contribution card adjustments */
 body.dark-theme .github-contributions-card {
     background: linear-gradient(145deg, #1f2937, #172033);
     border-color: #3b475a;
@@ -805,6 +848,7 @@ body.dark-theme .github-contributions-card:hover {
         box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
+/* Shared placeholders for About cards */
 .about-content>div {
     background-color: var(--card-bg);
     border-radius: 1.5rem;
