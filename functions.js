@@ -291,6 +291,99 @@ function initViewAllProjects() {
 }
 
 /* ==================================================
+   GitHub contribution calendar
+   ================================================== */
+async function loadGitHubContributions() {
+    const calendarContainer = document.getElementById("github-contributions-grid");
+    if (!calendarContainer) return;
+
+    try {
+        const response = await fetch(
+            "https://github-contributions-api.jogruber.de/v4/bullet35-repo?y=last"
+        );
+
+        if (!response.ok) {
+            throw new Error("Could not load GitHub contributions");
+        }
+
+        const data = await response.json();
+        const chart = document.createElement("div");
+        const months = document.createElement("div");
+        const chartBody = document.createElement("div");
+        const weekdays = document.createElement("div");
+        const calendar = document.createElement("div");
+
+        chart.className = "contribution-chart";
+        months.className = "contribution-months";
+        chartBody.className = "contribution-chart-body";
+        weekdays.className = "contribution-weekdays";
+        calendar.className = "contribution-calendar";
+
+        weekdays.innerHTML = `
+            <span class="weekday-monday">Mon</span>
+            <span class="weekday-wednesday">Wed</span>
+            <span class="weekday-friday">Fri</span>
+        `;
+
+        let previousMonth = -1;
+
+        data.contributions.forEach((contribution, index) => {
+            const contributionDate = new Date(`${contribution.date}T00:00:00`);
+            const month = contributionDate.getMonth();
+
+            if (month !== previousMonth) {
+                const nextMonthIndex = data.contributions.findIndex((item, itemIndex) => {
+                    if (itemIndex <= index) return false;
+                    return new Date(`${item.date}T00:00:00`).getMonth() !== month;
+                });
+                const currentColumn = Math.floor(index / 7) + 1;
+                const nextColumn = nextMonthIndex === -1
+                    ? Number.POSITIVE_INFINITY
+                    : Math.floor(nextMonthIndex / 7) + 1;
+
+                if (nextColumn - currentColumn >= 2) {
+                    const monthLabel = document.createElement("span");
+                    monthLabel.textContent = contributionDate.toLocaleDateString(
+                        "en-US",
+                        { month: "short" }
+                    );
+                    monthLabel.style.gridColumn = `${currentColumn}`;
+                    months.appendChild(monthLabel);
+                }
+
+                previousMonth = month;
+            }
+
+            const day = document.createElement("span");
+            const contributionWord = contribution.count === 1
+                ? "contribution"
+                : "contributions";
+            const readableDate = new Date(`${contribution.date}T00:00:00`)
+                .toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+
+            day.className = "contribution-day";
+            day.dataset.level = contribution.level;
+            day.dataset.tooltip = `${contribution.count} ${contributionWord} on ${readableDate}`;
+            day.setAttribute("aria-label", day.dataset.tooltip);
+            day.setAttribute("tabindex", "0");
+            calendar.appendChild(day);
+        });
+
+        chartBody.append(weekdays, calendar);
+        chart.append(months, chartBody);
+        calendarContainer.replaceChildren(chart);
+    } catch (error) {
+        calendarContainer.innerHTML =
+            '<p class="contributions-status">Contributions could not be loaded.</p>';
+        console.error(error);
+    }
+}
+
+/* ==================================================
    Initialization
    ================================================== */
 navSections();
@@ -301,3 +394,4 @@ openAccordion();
 initThemeToggle();
 loadProjects();
 initViewAllProjects();
+loadGitHubContributions();

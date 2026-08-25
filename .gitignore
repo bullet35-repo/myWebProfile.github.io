@@ -9,7 +9,8 @@ desktop.ini
 
 # Logs
 *.log
-
+#md files
+/docs
 # Local environment files
 .env
 .env.*
