@@ -3,7 +3,7 @@
     {
         "title": "Flood Warning System",
         "description": "A system that monitors water levels and and provides flood warning",
-        "image":"assets/Floodwarning.jpg",
+        "image":"assets/projects/Floodwarning.jpg",
         "technologies":["Arduino"]
     }
         
