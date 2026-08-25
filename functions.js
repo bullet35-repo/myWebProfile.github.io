@@ -208,3 +208,40 @@ function initThemeToggle() {
     });
 }
 initThemeToggle();
+
+const loadProjects = async () => {
+    const container = document.querySelector("#projects .project-list");
+    if (!container) return;
+
+    try {
+        const response = await fetch("profile-data.json");
+        if (!response.ok) {
+            throw new Error("Could not load projects data");
+        }
+
+        const data = await response.json();
+
+        container.innerHTML = data.projects.map(project => `
+            <article class="project-card">
+                <img
+                    src="${project.image}"
+                    alt="${project.title}"
+                    loading="lazy"
+                >
+                <div class="project-card-content">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="project-technologies">
+                        ${project.technologies.map(technology =>
+                            `<span>${technology}</span>`
+                        ).join("")}
+                    </div>
+                </div>
+            </article>
+        `).join("");
+    } catch (error) {
+        container.innerHTML = "<p>Projects could not be loaded.</p>";
+        console.error(error);
+    }
+};
+loadProjects();

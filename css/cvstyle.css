@@ -597,14 +597,14 @@ main section.active {
     grid-column: span 4;
     grid-row: span 13;
     background-color: var(--dark-card-bg);
-    color: var(--dark-card-text);
+    color: var(--text-main);
 }
 
 .contact-info {
     grid-column: span 2;
     grid-row: span 7;
     background-color: var(--dark-card-bg);
-    color: var(--dark-card-text);
+    color: var(--text-main);
 }
 
 .about-content {
@@ -613,6 +613,147 @@ main section.active {
     grid-auto-rows: 10px;
     gap: 1.5rem;
     grid-auto-flow: dense;
+}
+.projects-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 360px));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.project-card {
+    overflow: hidden;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+}
+
+.project-card img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.project-card-content {
+    padding: 1.25rem;
+}
+
+.project-card-content p {
+    margin: 0.75rem 0;
+    color: var(--text-muted);
+}
+
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-technologies span {
+    padding: 0.3rem 0.65rem;
+    background-color: var(--theme-hover-bg);
+    border-radius: 999px;
+    font-size: 0.8rem;
+}
+
+.project-card a {
+    color: var(--accent-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.github-contributions-card {
+    display: block;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    color: var(--text-main);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    text-decoration: none;
+}
+
+.github-contributions-heading,
+.github-contributions-heading>div {
+    display: flex;
+    align-items: center;
+}
+
+.github-contributions-heading {
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.github-contributions-heading>div {
+    gap: 0.65rem;
+}
+
+.github-contributions-heading i {
+    font-size: 1.5rem;
+}
+
+.github-contributions-heading span {
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+}
+
+.github-contributions-grid {
+    overflow-x: auto;
+}
+
+.github-contributions-grid img {
+    display: block;
+    width: 100%;
+    min-width: 680px;
+    height: auto;
+    transition: filter 0.25s ease;
+}
+
+.projects-section-title {
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+body.dark-theme .github-contributions-card {
+    background: linear-gradient(145deg, #1f2937, #172033);
+    border-color: #3b475a;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+body.dark-theme .github-contributions-heading h2,
+body.dark-theme .github-contributions-heading>div>i {
+    color: #f8fafc;
+}
+
+body.dark-theme .github-contributions-heading span {
+    color: #60a5fa;
+}
+
+body.dark-theme .github-contributions-grid img {
+    filter: brightness(0.72) contrast(1.12) saturate(1.2);
+}
+
+body.dark-theme .github-contributions-card:hover {
+    border-color: #4b83c3;
+    transform: translateY(-2px);
+}
+
+.github-contributions-card {
+    transition: transform 0.2s ease, border-color 0.2s ease,
+        box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .about-content>div {
