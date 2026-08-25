@@ -208,29 +208,60 @@ function initThemeToggle() {
     });
 }
 initThemeToggle();
+function createProjectCard(project, compact = false) {
+    return `
+        <article class="project-card ${compact ? "project-card-compact" : ""}">
+            <img
+                src="${project.image}"
+                alt="${project.title}"
+                loading="lazy"
+            >
+
+            <div class="project-card-content">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+
+                <div class="project-technologies">
+                    ${project.technologies.map(technology =>
+                        `<span>${technology}</span>`
+                    ).join("")}
+                </div>
+            </div>
+        </article>
+    `;
+}
 
 const loadProjects = async () => {
-    const container = document.querySelector("#projects .project-list");
-    if (!container) return;
+    const projectList = document.querySelector(
+        "#projects .project-list"
+    );
+
+    const homeProjectList = document.querySelector(
+        "#home .featured-project-list"
+    );
 
     try {
         const response = await fetch("profile-data.json");
+
         if (!response.ok) {
             throw new Error("Could not load projects data");
         }
 
         const data = await response.json();
 
-        container.innerHTML = data.projects.map(project => `
-            <article class="project-card">
+        // Create reusable HTML for one project.
+        const createProjectCard = (project, compact = false) => `
+            <article class="project-card ${compact ? "project-card-compact" : ""}">
                 <img
                     src="${project.image}"
                     alt="${project.title}"
                     loading="lazy"
                 >
+
                 <div class="project-card-content">
                     <h3>${project.title}</h3>
                     <p>${project.description}</p>
+
                     <div class="project-technologies">
                         ${project.technologies.map(technology =>
                             `<span>${technology}</span>`
@@ -238,10 +269,42 @@ const loadProjects = async () => {
                     </div>
                 </div>
             </article>
-        `).join("");
+        `;
+
+        // All projects on the Projects page.
+        if (projectList) {
+            projectList.innerHTML = data.projects
+                .map(project => createProjectCard(project))
+                .join("");
+        }
+
+        // Only the first two projects on Home.
+        if (homeProjectList) {
+            homeProjectList.innerHTML = data.projects
+                .slice(0, 2)
+                .map(project => createProjectCard(project, true))
+                .join("");
+        }
     } catch (error) {
-        container.innerHTML = "<p>Projects could not be loaded.</p>";
+        if (projectList) {
+            projectList.innerHTML =
+                "<p>Projects could not be loaded.</p>";
+        }
+
+        if (homeProjectList) {
+            homeProjectList.innerHTML =
+                "<p>Projects could not be loaded.</p>";
+        }
+
         console.error(error);
     }
 };
+
 loadProjects();
+const viewAllButton = document.querySelector(".view-all-projects");
+
+viewAllButton?.addEventListener("click", () => {
+    document.querySelector(
+        '.sidebar-menu a[href="#projects"]'
+    )?.click();
+});

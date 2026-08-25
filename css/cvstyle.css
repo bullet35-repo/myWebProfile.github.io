@@ -599,7 +599,56 @@ main section.active {
     background-color: var(--dark-card-bg);
     color: var(--text-main);
 }
+.featured-project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 300px));
+    gap: 1rem;
+    align-items: start;
+}
 
+.project-card-compact {
+    display: block;
+    width: 100%;
+}
+
+.project-card-compact img {
+    width: 100%;
+    height: 160px;
+    min-height: 0;
+    object-fit: cover;
+}
+
+.project-card-compact .project-card-content {
+    padding: 0.8rem;
+}
+
+.project-card-compact .project-card-content h3 {
+    font-size: 1rem;
+}
+
+.project-card-compact .project-card-content p,
+.project-card-compact .project-technologies {
+    display: none;
+}
+
+.view-all-projects {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    color: white;
+    background-color: var(--accent-blue);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.view-all-projects:hover {
+    filter: brightness(0.9);
+}
 .contact-info {
     grid-column: span 2;
     grid-row: span 7;

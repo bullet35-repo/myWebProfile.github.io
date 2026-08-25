@@ -7,6 +7,7 @@
     <title>my Portfolio</title>
 
     <link rel="stylesheet" href="css/cvstyle.css">
+    <link rel="preconnect" href="https://ghchart.rshah.org">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -259,6 +260,14 @@
                             <i class="bx bx-folder-open"></i>
                             <h3>Projects</h3>
                         </div>
+                        <div class="featured-project-list">
+                            
+                        </div>
+                        <button type="button" class="view-all-projects">
+                                 View All Projects
+                                <i class="bx bx-right-arrow-alt"></i>
+                        </button>
+                        
                     </div>
                     <div class="contact-info">
                         <div class="card-title">
@@ -310,7 +319,8 @@
                         </div>
                         <div class="github-contributions-grid">
                             <img src="https://ghchart.rshah.org/219653/bullet35-repo"
-                                alt="GitHub contribution calendar for bullet35-repo" loading="lazy">
+                                alt="GitHub contribution calendar for bullet35-repo" loading="eager"
+                                fetchpriority="high">
                         </div>
                     </a>
 
